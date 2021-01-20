@@ -1,0 +1,23 @@
+﻿@model CoreTaskWeb.Models.TodoItem
+@{ Layout = "_Layout"; ViewBag.Title = "Todo";}
+
+<h4> Redigera ToDo </h4>
+<div align="center" width="500px">
+    @using (Html.BeginForm("UpdateTodo", "Home", FormMethod.Post))
+    {
+        <table class="table" width="400px" cellpadding="20">
+            <tr class="btn-default">
+                <td>Todo </td>
+                <td> @Html.TextBoxFor(model => model.Name) </td>
+            </tr>
+            <tr>
+                <td> Avklarad </td>
+                <td> @Html.CheckBoxFor(model => model.IsComplete) </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> <input class="btn-success" type="submit" value="Spara" /> <a class="btn-block" href="@Url.Action("Index","")"> Tillbaka </a> @Html.HiddenFor(model => model.Id) </td>
+            </tr>
+        </table>
+    }
+</div>

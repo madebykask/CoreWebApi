@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CoreTaskWeb.Models.TodoItem>
+@{ Layout = "_Layout"; ViewBag.Title = "Todo";}
+
+<a href="@Url.Action("Create","Home")">Lägg till ToDo </a>
+<br />
+<br />
+    
+<table class="table">
+    <thead>
+        <tr>
+            <th>Todo</th>
+            <th>Slutfört</th>
+            <th>Ta bort/Ändra</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Task in Model)
+        {
+            <tr class="table-bordered">
+                <td>@Task.Name </td>
+                @if (Task.IsComplete == true)
+                {
+                    <td>Ja</td>
+                }
+                else
+                {
+                    <td>Nej</td>
+                }
+                <td>
+                    <a onclick="return confirm('Vill du ta bort?')" href="@Url.Action("DeleteTodo","Home",new {id= Task.Id})">Ta bort</a> || <a href="@Url.Action("Edit","Home",new { id = Task.Id })">Redigera</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
